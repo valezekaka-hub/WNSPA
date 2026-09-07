@@ -1,0 +1,6 @@
+{
+  "name": "WNSPA — Wireless Network Security Protocol Analyzer",
+  "description": "A system for comparative analysis and evaluation of wireless network security protocols (WEP, WPA, WPA2, WPA3).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

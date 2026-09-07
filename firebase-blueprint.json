@@ -1,0 +1,99 @@
+{
+  "entities": {
+    "Protocol": {
+      "title": "Protocol",
+      "description": "Wireless network security protocol definition (e.g., WEP, WPA, WPA2, WPA3)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 32 },
+        "name": { "type": "string", "maxLength": 100 },
+        "abbreviation": { "type": "string", "maxLength": 20 },
+        "standard": { "type": "string", "maxLength": 50 },
+        "releaseYear": { "type": "number" },
+        "encryptionMethod": { "type": "string", "maxLength": 200 },
+        "authenticationMethod": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "strengths": { "type": "array" },
+        "weaknesses": { "type": "array" },
+        "securityConcerns": { "type": "array" },
+        "isActive": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "abbreviation", "encryptionMethod", "authenticationMethod", "description"]
+    },
+    "Criterion": {
+      "title": "Criterion",
+      "description": "Evaluation criterion for wireless security assessment (SS, VL, ER, AE, CAR, NPE, OA)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 32 },
+        "code": { "type": "string", "maxLength": 10 },
+        "name": { "type": "string", "maxLength": 100 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "weight": { "type": "number" },
+        "displayOrder": { "type": "number" },
+        "scaleInterpretation": { "type": "object" },
+        "isInvertedMetric": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "code", "name", "description", "weight", "displayOrder"]
+    },
+    "Assessment": {
+      "title": "Assessment",
+      "description": "Researcher assessment scoring record for a protocol across all seven criteria",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 64 },
+        "protocolId": { "type": "string", "maxLength": 32 },
+        "protocolAbbreviation": { "type": "string", "maxLength": 20 },
+        "researcherName": { "type": "string", "maxLength": 100 },
+        "assessmentDate": { "type": "string", "maxLength": 50 },
+        "isDemonstration": { "type": "boolean" },
+        "scores": { "type": "object" },
+        "overallScore": { "type": "number" },
+        "percentage": { "type": "number" },
+        "classification": { "type": "string", "maxLength": 30 },
+        "notes": { "type": "string", "maxLength": 2000 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "protocolId", "protocolAbbreviation", "scores", "overallScore", "percentage", "classification"]
+    },
+    "Comparison": {
+      "title": "Comparison",
+      "description": "Comparative analysis dataset saving multiple protocol evaluations",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 64 },
+        "title": { "type": "string", "maxLength": 150 },
+        "protocolIds": { "type": "array" },
+        "assessmentIds": { "type": "array" },
+        "comparisonDate": { "type": "string", "maxLength": 50 },
+        "isDemonstration": { "type": "boolean" },
+        "summaryNotes": { "type": "string", "maxLength": 2000 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "protocolIds", "comparisonDate"]
+    }
+  },
+  "firestore": {
+    "/protocols/{protocolId}": {
+      "schema": "Protocol",
+      "description": "Registry of wireless network security protocols"
+    },
+    "/criteria/{criterionId}": {
+      "schema": "Criterion",
+      "description": "Registry of predefined evaluation criteria"
+    },
+    "/assessments/{assessmentId}": {
+      "schema": "Assessment",
+      "description": "Protocol assessment evaluations and scores"
+    },
+    "/comparisons/{comparisonId}": {
+      "schema": "Comparison",
+      "description": "Saved comparative evaluations across protocols"
+    }
+  }
+}

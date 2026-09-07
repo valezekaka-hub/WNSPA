@@ -1,0 +1,59 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 64 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Wireless Protocols collection
+    match /protocols/{protocolId} {
+      allow read: if isValidId(protocolId);
+      allow create, update: if isValidId(protocolId) 
+        && request.resource.data.name is string 
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.abbreviation is string
+        && request.resource.data.abbreviation.size() <= 20;
+      allow delete: if false;
+    }
+
+    // Evaluation Criteria collection
+    match /criteria/{criterionId} {
+      allow read: if isValidId(criterionId);
+      allow create, update: if isValidId(criterionId)
+        && request.resource.data.code is string
+        && request.resource.data.code.size() <= 10
+        && request.resource.data.name is string
+        && request.resource.data.name.size() <= 100;
+      allow delete: if false;
+    }
+
+    // Assessments collection
+    match /assessments/{assessmentId} {
+      allow read: if isValidId(assessmentId);
+      allow create, update: if isValidId(assessmentId)
+        && request.resource.data.protocolId is string
+        && request.resource.data.overallScore is number
+        && request.resource.data.overallScore >= 1.0
+        && request.resource.data.overallScore <= 5.0
+        && request.resource.data.percentage is number
+        && request.resource.data.percentage >= 0.0
+        && request.resource.data.percentage <= 100.0;
+      allow delete: if isValidId(assessmentId);
+    }
+
+    // Comparisons collection
+    match /comparisons/{comparisonId} {
+      allow read: if isValidId(comparisonId);
+      allow create, update: if isValidId(comparisonId)
+        && request.resource.data.protocolIds is list
+        && request.resource.data.protocolIds.size() >= 2;
+      allow delete: if isValidId(comparisonId);
+    }
+  }
+}
