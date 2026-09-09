@@ -152,6 +152,35 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({
             <p className="text-sm font-semibold text-slate-300 print:text-gray-800 pt-1">
               WNSPA — Wireless Network Security Protocol Analyzer
             </p>
+            <div className="mt-4 pt-4 border-t border-slate-800 print:border-gray-300 text-center">
+  <p className="text-sm font-bold text-white print:text-black">
+    EZEKAKA, OBIORA VALENTINE
+  </p>
+
+  <p className="text-xs text-slate-300 print:text-gray-700 mt-1">
+    Matric No.: NOU254276406
+  </p>
+
+  <p className="text-xs text-slate-300 print:text-gray-700 mt-2">
+    Department of Information Technology
+  </p>
+
+  <p className="text-xs text-slate-300 print:text-gray-700">
+    Faculty of Computer Science
+  </p>
+
+  <p className="text-xs text-slate-300 print:text-gray-700">
+    National Open University
+  </p>
+
+  <p className="text-xs text-slate-300 print:text-gray-700">
+    Lagos Study Center
+  </p>
+
+  <p className="text-xs text-slate-300 print:text-gray-700 mt-2">
+    Supervisor: Dr (Mrs) Raji-Lawal H. Y
+  </p>
+</div>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs pt-3 border-t border-slate-800 print:border-gray-300">

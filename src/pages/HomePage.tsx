@@ -32,6 +32,36 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, protocols, crite
             <Shield className="w-3.5 h-3.5" />
             <span>Academic ICT Research Artefact</span>
           </div>
+          
+          <div className="mt-6 text-center">
+  <h2 className="text-lg font-semibold text-white">
+    EZEKAKA, OBIORA VALENTINE
+  </h2>
+
+  <p className="mt-1 text-sm text-slate-300">
+    Matric No.: NOU254276406
+  </p>
+
+  <p className="mt-3 text-sm text-slate-300">
+    Department of Information Technology
+  </p>
+
+  <p className="text-sm text-slate-300">
+    Faculty of Computer Science
+  </p>
+
+  <p className="text-sm text-slate-300">
+    National Open University
+  </p>
+
+  <p className="text-sm text-slate-300">
+    Lagos Study Center
+  </p>
+
+  <p className="mt-3 text-sm text-slate-300">
+    Supervisor: Dr (Mrs) Raji-Lawal H. Y
+  </p>
+</div>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-2 font-mono">
             WNSPA
